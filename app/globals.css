@@ -1,26 +1,89 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+
+@theme {
+  --color-primary: #fbbf24;
+  --color-secondary: #f87171;
+  --color-background-light: #fffbeb;
+  --color-background-dark: #1f1a12;
+  --color-surface-light: #ffffff;
+  --color-surface-dark: #2d261e;
+
+  --font-display: var(--font-fredoka), "Fredoka", "Nunito", sans-serif;
+  --font-body: var(--font-nunito), "Nunito", "Quicksand", sans-serif;
+
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  
+  /* Portfolio Theme Colors */
+  --color-portfolio-primary: #FFA726;
+  --color-portfolio-secondary: #FFECB3;
+  --color-portfolio-bg-light: #FFF8E1;
+  --color-portfolio-bg-dark: #1F1A15;
+  --color-portfolio-text-light: #5D4037;
+  --color-portfolio-text-dark: #EFEBE9;
+  /* Dashboard Theme Colors */
+  --color-muted-light: #9ca3af;
+  --color-muted-dark: #9ca3af;
+  /* Kanban Theme Colors */
+  --color-accent-red: #ef4444;
+  --color-accent-green: #10b981;
+  /* Order Details Theme Colors */
+  --color-border-light: #e5e7eb;
+  --color-border-dark: #404040;
+}
+
+/* Custom Variant for Class-based Dark Mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Custom Utilities */
+@utility blob-shape {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+@utility shadow-soft {
+  box-shadow: 0 4px 6px -1px rgba(251, 191, 36, 0.1), 0 2px 4px -1px rgba(251, 191, 36, 0.06);
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-background-light);
+  --foreground: #1f1a12; /* Dark text on light bg */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Dark Mode Variables */
+.dark {
+  --background: var(--color-background-dark);
+  --foreground: #f3f4f6; /* Light text on dark bg */
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Custom Scrollbar */
+html {
+  scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background-light);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 10px;
+}
+.dark ::-webkit-scrollbar-track {
+  background: var(--color-background-dark);
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
 }

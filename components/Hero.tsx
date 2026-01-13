@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -16,7 +18,7 @@ export default function Hero() {
               <span className="material-icons-round text-sm mr-2">
                 auto_awesome
               </span>
-              AI-Assisted Multi-Creator Studio
+              Creative Studio
             </div>
             <h1 className="font-display font-extrabold text-5xl lg:text-7xl leading-tight mb-6 text-gray-900 dark:text-white">
               Hatching{" "}
@@ -26,19 +28,19 @@ export default function Hero() {
               Together
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              One brand, infinite styles. We blend human artistry with AI tools to
-              bring your cutest dreams to life.
+              One brand, infinite styles.
+              Bring your cutest dreams to life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link
-                href="#portfolio"
+                href="/portfolio"
                 className="inline-flex justify-center items-center px-8 py-4 bg-white dark:bg-surface-dark text-gray-900 dark:text-white border-2 border-gray-200 dark:border-gray-700 font-bold rounded-xl hover:border-primary dark:hover:border-primary hover:text-primary transition-all shadow-sm hover:shadow-md transform hover:-translate-y-1"
               >
                 <span className="material-icons-round mr-2">grid_view</span>
                 View Portfolio
               </Link>
               <Link
-                href="#commission"
+                href="/commission"
                 className="inline-flex justify-center items-center px-8 py-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-yellow-500/30 hover:shadow-yellow-500/50 hover:bg-yellow-500 transition-all transform hover:-translate-y-1"
               >
                 <span className="material-icons-round mr-2">palette</span>
@@ -66,17 +68,15 @@ export default function Hero() {
                   className="absolute -bottom-6 -left-6 bg-white dark:bg-surface-dark p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce"
                   style={{ animationDuration: "3s" }}
                 >
-                  <div className="bg-secondary/20 p-2 rounded-full">
-                    <span className="material-icons-round text-secondary">
-                      favorite
-                    </span>
+                  <div className="bg-green-100 dark:bg-green-900/30 p-2 rounded-full text-green-600 dark:text-green-400">
+                    <span className="material-icons-round">check_circle</span>
                   </div>
                   <div>
                     <p className="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase">
-                      Rating
+                      Status
                     </p>
                     <p className="font-display font-bold text-gray-900 dark:text-white">
-                      5.0 Stars
+                      Open for Commission
                     </p>
                   </div>
                 </div>

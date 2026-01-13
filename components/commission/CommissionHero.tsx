@@ -20,7 +20,7 @@ export default function CommissionHero({ onOpenModal }: CommissionHeroProps) {
               <span className="material-icons-round text-base mr-1">
                 auto_awesome
               </span>
-              One Brand, Multi-Creator, AI-Assisted
+              Creative Studio
             </div>
             <h1 className="text-5xl md:text-6xl font-display font-bold text-gray-900 dark:text-white leading-tight">
               Bring Your <br />
@@ -30,7 +30,7 @@ export default function CommissionHero({ onOpenModal }: CommissionHeroProps) {
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-lg mx-auto md:mx-0">
               High-quality anime art commissions tailored to your needs. From
-              VTuber models to character illustrations, we create magic
+              character illustrations to VTuber models, we create magic
               together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
@@ -56,8 +56,8 @@ export default function CommissionHero({ onOpenModal }: CommissionHeroProps) {
               <div className="absolute inset-0 bg-yellow-200 dark:bg-yellow-900/40 rounded-full blur-2xl transform scale-90"></div>
               <div className="relative z-10 w-full h-full rounded-3xl shadow-2xl rotate-3 border-4 border-white dark:border-surface-dark overflow-hidden">
                 <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV9C3q83yDyc5S-tg4s41dMp_u8zspO-4oV6x8T80CoqSg2Mlo5ZGLhraXoroAXvnM5BJwlNHUqwyO4S3YUbiZ_OvPMWtryLZ_utMOo1exiLTw03jTL-tP7eXQ3s_vfp_zTExPRvhQiitd4yCJIr-nijd-aKgGDSQsvHrI9T5gkIP5Gy1upTnQM1wbqbNnG_rWHVbhDOy-l561pbA6Z9zGFPOHWaK08F2FuvYIrQjFewhzb1DxTRm9VsWgcBYSbCG2P4Zci6s45g"
-                  alt="Anime Style Art Illustration"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnfa0lLPfnbsw7cSxbTooGuyWdc0uPWPKUGwosBM0fXRbv1t1R3dosQwYqA7l-Ckot3-Ue3OCD9jqAbQMWIZssxBd5A06dO6GsqCZ2gge20J937PyVKncFuTR2Vn4BOgQSvEEiOESmTAqTedHC5cgjxIDD9-7n9KADDubMKCo4KWjNwEJr1j-Wz7JFJUfI6g5oQt4oMuVW4KKbCiQ6mIkigcGOGHAx-czqKr0hal88yfP-tv1uvD-oIOIS10rsAhBwD2Q3ctkWFQ"
+                  alt="Anime girl in chicken costume singing"
                   fill
                   className="object-cover"
                 />

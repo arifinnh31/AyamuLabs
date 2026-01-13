@@ -1,6 +1,14 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
+import PrivacyPolicyModal from "../legal/PrivacyPolicyModal";
+import TermsOfServiceModal from "../legal/TermsOfServiceModal";
 
 export default function Footer() {
+  const [showPrivacy, setShowPrivacy] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
+
   return (
     <footer className="bg-white dark:bg-surface-dark border-t border-gray-100 dark:border-gray-800 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -9,7 +17,7 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
               <span className="material-icons-round text-primary text-2xl">
-                egg_alt
+                egg
               </span>
               <span className="font-display font-bold text-xl text-gray-900 dark:text-white">
                 Ayamu<span className="text-primary">Labs</span>
@@ -17,34 +25,34 @@ export default function Footer() {
             </div>
             <p className="text-gray-500 text-sm leading-relaxed">
               A creative studio dedicated to bringing cute and playful art to the
-              world through the power of collaboration and AI.
+              world.
             </p>
           </div>
 
-          {/* Studio Links */}
+          {/* Studio Links - Matches Navbar */}
           <div>
             <h4 className="font-bold text-gray-900 dark:text-white mb-4">
               Studio
             </h4>
             <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
               <li>
-                <Link href="#" className="hover:text-primary transition-colors">
-                  About Us
+                <Link href="/" className="hover:text-primary transition-colors">
+                  Home
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary transition-colors">
-                  Our Creators
+                <Link href="/portfolio" className="hover:text-primary transition-colors">
+                  Portfolio
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary transition-colors">
-                  Careers
+                <Link href="/commission" className="hover:text-primary transition-colors">
+                  Commission
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary transition-colors">
-                  Contact
+                <Link href="/about" className="hover:text-primary transition-colors">
+                  About
                 </Link>
               </li>
             </ul>
@@ -61,21 +69,6 @@ export default function Footer() {
                   Commissions
                 </Link>
               </li>
-              <li>
-                <Link href="#" className="hover:text-primary transition-colors">
-                  Merchandise
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-primary transition-colors">
-                  VTuber Models
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-primary transition-colors">
-                  Internal Tools
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -86,7 +79,9 @@ export default function Footer() {
             </h4>
             <div className="flex space-x-4">
               <Link
-                href="#"
+                href="https://x.com/arifinnh31"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all group"
                 aria-label="Follow us on X"
               >
@@ -99,7 +94,9 @@ export default function Footer() {
                 </svg>
               </Link>
               <Link
-                href="#"
+                href="https://www.instagram.com/arifinnh31"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-pink-600 hover:text-white dark:hover:bg-pink-600 dark:hover:text-white transition-all group"
                 aria-label="Follow us on Instagram"
               >
@@ -112,7 +109,9 @@ export default function Footer() {
                 </svg>
               </Link>
               <Link
-                href="#"
+                href="https://discord.gg/HwyuVWjM"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-[#5865F2] hover:text-white transition-all group"
                 aria-label="Join us on Discord"
               >
@@ -131,24 +130,27 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-gray-100 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-400 dark:text-gray-500 text-center md:text-left mb-4 md:mb-0">
-            © 2023 AyamuLabs. All rights reserved.
+            © 2026 AyamuLabs. All rights reserved.
           </p>
           <div className="flex space-x-6 text-sm text-gray-400 dark:text-gray-500">
-            <Link
-              href="#"
-              className="hover:text-gray-600 dark:hover:text-gray-300"
+            <button
+              onClick={() => setShowPrivacy(true)}
+              className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
             >
               Privacy Policy
-            </Link>
-            <Link
-              href="#"
-              className="hover:text-gray-600 dark:hover:text-gray-300"
+            </button>
+            <button
+              onClick={() => setShowTerms(true)}
+              className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
             >
               Terms of Service
-            </Link>
+            </button>
           </div>
         </div>
       </div>
+      
+      <PrivacyPolicyModal isOpen={showPrivacy} onClose={() => setShowPrivacy(false)} />
+      <TermsOfServiceModal isOpen={showTerms} onClose={() => setShowTerms(false)} />
     </footer>
   );
 }

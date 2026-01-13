@@ -4,10 +4,9 @@ export default function WelcomeBanner() {
   return (
     <div className="rounded-2xl bg-linear-to-r from-primary to-orange-400 p-6 md:p-10 mb-8 text-white relative overflow-hidden shadow-lg">
       <div className="relative z-10 max-w-2xl">
-        <h2 className="text-3xl font-bold mb-2">Welcome back, Creator! 🐣</h2>
+        <h2 className="text-3xl font-bold mb-2">Welcome back, Ayamu! 🐣</h2>
         <p className="opacity-90 text-lg">
-          You have 4 new commission requests and the AI server is running
-          smoothly.
+          We have 4 new commission requests.
         </p>
         <Link
           href="/orders"

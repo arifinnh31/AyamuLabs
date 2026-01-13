@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nunito, Quicksand, Fredoka } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ContentProvider } from "@/components/content/ContentContext";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -38,14 +39,16 @@ export default function RootLayout({
         className={`${nunito.variable} ${quicksand.variable} ${fredoka.variable} antialiased bg-background text-foreground`}
       >
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <ContentProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </ContentProvider>
       </body>
     </html>
   );

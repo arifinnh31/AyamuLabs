@@ -6,7 +6,7 @@ import AIAssistantCard from "@/components/dashboard/AIAssistantCard";
 
 export default function DashboardPage() {
   return (
-    <div className="p-4 md:p-8">
+    <div className="p-4 md:px-8 md:pb-8 md:pt-1">
       <WelcomeBanner />
       <StatsGrid />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

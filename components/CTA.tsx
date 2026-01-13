@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function CTA() {
   return (
     <section className="py-20" id="commission">
@@ -14,9 +16,12 @@ export default function CTA() {
             Join the coop! Get high-quality art for your brand, game, or stream
             today.
           </p>
-          <button className="bg-primary dark:bg-surface-dark dark:text-white text-gray-900 font-bold py-4 px-10 rounded-xl hover:bg-yellow-400 dark:hover:bg-gray-800 transition-colors shadow-lg relative z-10">
+          <Link 
+            href="/commission"
+            className="inline-block bg-primary dark:bg-surface-dark dark:text-white text-gray-900 font-bold py-4 px-10 rounded-xl hover:bg-yellow-400 dark:hover:bg-gray-800 transition-colors shadow-lg relative z-10"
+          >
             Start Commission
-          </button>
+          </Link>
         </div>
       </div>
     </section>

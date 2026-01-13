@@ -10,7 +10,7 @@ export default function OrderDetailsPage() {
   return (
     <>
       <OrderDetailHeader />
-      <div className="w-full min-h-full space-y-8 p-4 md:p-8 pb-32">
+      <div className="w-full min-h-full space-y-8 p-4 md:px-8 md:pb-8 md:pt-1 pb-32">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
             <OrderInfoCard />

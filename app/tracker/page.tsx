@@ -1,5 +1,5 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import TrackerHeader from "@/components/tracker/TrackerHeader";
 import ProgressBar from "@/components/tracker/ProgressBar";
 import LivePreview from "@/components/tracker/LivePreview";

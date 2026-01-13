@@ -14,7 +14,9 @@ export default function QuickOrder() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           <Link
-            href="#"
+            href="https://vgen.co/AkaniYua"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group relative overflow-hidden rounded-2xl bg-white dark:bg-surface-dark p-8 shadow-sm hover:shadow-xl border border-gray-100 dark:border-gray-800 transition-all duration-300"
           >
             <div className="absolute top-0 right-0 bg-pink-500 w-24 h-24 rounded-full blur-2xl opacity-10 group-hover:opacity-20 transition"></div>
@@ -38,7 +40,9 @@ export default function QuickOrder() {
             </div>
           </Link>
           <Link
-            href="#"
+            href="https://www.fiverr.com/akanichiyu"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group relative overflow-hidden rounded-2xl bg-white dark:bg-surface-dark p-8 shadow-sm hover:shadow-xl border border-gray-100 dark:border-gray-800 transition-all duration-300"
           >
             <div className="absolute top-0 right-0 bg-green-500 w-24 h-24 rounded-full blur-2xl opacity-10 group-hover:opacity-20 transition"></div>

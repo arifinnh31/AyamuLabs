@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import ThemeToggle from "../ui/ThemeToggle";
 
 export default function AIStudioHeader() {
   return (
@@ -44,12 +45,7 @@ export default function AIStudioHeader() {
                 Assets
               </a>
             </nav>
-            <button
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-500 dark:text-gray-400 cursor-pointer"
-              // onClick is handled by next-themes usually
-            >
-              <span className="material-icons-round">brightness_4</span>
-            </button>
+            <ThemeToggle />
             <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden border-2 border-primary">
               <Image
                 alt="User Profile"

@@ -1,4 +1,4 @@
-import KanbanCard from "./KanbanCard";
+import KanbanCard, { KanbanCardProps } from "./KanbanCard";
 
 interface KanbanColumnProps {
   title: string;
@@ -6,7 +6,8 @@ interface KanbanColumnProps {
   colorClass: string;
   bgClass: string;
   textClass: string;
-  cards: any[];
+  cards: KanbanCardProps[];
+  onCardAction?: (action: string, orderId: string) => void;
 }
 
 export default function KanbanColumn({
@@ -16,6 +17,7 @@ export default function KanbanColumn({
   bgClass,
   textClass,
   cards,
+  onCardAction
 }: KanbanColumnProps) {
   return (
     <div className="flex flex-col h-full min-w-[300px] md:min-w-0">
@@ -31,7 +33,7 @@ export default function KanbanColumn({
       </div>
       <div className="flex-1 bg-gray-50/50 dark:bg-gray-800/30 rounded-2xl p-2 space-y-3">
         {cards.map((card, index) => (
-          <KanbanCard key={index} {...card} />
+          <KanbanCard key={index} {...card} onAction={onCardAction} />
         ))}
       </div>
     </div>

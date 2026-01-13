@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTheme } from "next-themes";
+import Button from "../ui/Button";
+import ThemeToggle from "../ui/ThemeToggle";
 
 export default function Navbar() {
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -19,9 +20,7 @@ export default function Navbar() {
       : "font-bold text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors";
   };
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+
 
   return (
     <nav className="fixed w-full z-50 top-0 transition-all duration-300 bg-surface-light/90 dark:bg-surface-dark/90 backdrop-blur-md shadow-sm border-b border-primary/20">
@@ -33,10 +32,8 @@ export default function Navbar() {
               href="/"
               className="flex items-center space-x-3 group cursor-pointer"
             >
-              <div className="bg-primary p-2 rounded-xl rotate-3 group-hover:rotate-12 transition-transform duration-300">
-                <span className="material-icons-round text-white text-2xl">
-                  egg_alt
-                </span>
+              <div className="h-10 w-10 shrink-0 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform duration-300">
+                <span className="material-icons-round">egg</span>
               </div>
               <span className="font-display font-bold text-2xl tracking-tight text-gray-900 dark:text-white">
                 Ayamu<span className="text-primary">Labs</span>
@@ -55,7 +52,7 @@ export default function Navbar() {
             <Link href="/commission" className={getLinkClass("/commission")}>
               Commission
             </Link>
-            <Link href="#" className={getLinkClass("/about")}>
+            <Link href="/about" className={getLinkClass("/about")}>
               About
             </Link>
           </div>
@@ -63,35 +60,30 @@ export default function Navbar() {
           {/* Right Actions */}
           <div className="hidden md:flex flex-1 items-center justify-end gap-4">
             {/* Theme Toggle */}
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-full text-zinc-800 dark:text-zinc-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-              aria-label="Toggle Theme"
-            >
-              <span className="material-icons-round text-2xl">
-                {mounted && theme === "dark" ? "light_mode" : "dark_mode"}
-              </span>
-            </button>
+            <ThemeToggle />
 
             {/* Login Button */}
-            <Link
-              href="/dashboard"
-              className="bg-primary hover:bg-opacity-90 text-white font-bold py-2 px-6 rounded-full shadow-md transition-all active:scale-95"
-            >
-              Login
+            <Link href="/dashboard">
+              <Button>Login</Button>
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
-            <button
+          {/* Mobile Actions & Menu Button */}
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <Link href="/dashboard">
+              <Button size="sm">Login</Button>
+            </Link>
+            <Button
+              variant="icon"
+              size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white focus:outline-none"
+              className="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white ml-1"
             >
-              <span className="material-icons-round text-3xl">
+              <span className="material-icons-round text-3xl w-[1em] overflow-hidden whitespace-nowrap text-center block">
                 {isMobileMenuOpen ? "close" : "menu_rounded"}
               </span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -134,7 +126,7 @@ export default function Navbar() {
               Commission
             </Link>
             <Link
-              href="#"
+              href="/about"
               className={`block px-3 py-2 rounded-md text-base font-bold transition-colors ${
                 pathname?.startsWith("/about")
                   ? "text-primary bg-primary/10"
@@ -144,27 +136,6 @@ export default function Navbar() {
             >
               About
             </Link>
-            <Link
-              href="/dashboard"
-              className="block px-3 py-2 rounded-md text-base font-bold text-secondary hover:bg-secondary/10"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Login
-            </Link>
-            <div className="flex items-center px-3 py-2">
-              <span className="text-gray-600 dark:text-gray-300 mr-2 font-bold">
-                Theme:
-              </span>
-              <button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                aria-label="Toggle Theme"
-              >
-                <span className="material-icons-round text-2xl text-zinc-800 dark:text-zinc-200">
-                  {mounted && theme === "dark" ? "light_mode" : "dark_mode"}
-                </span>
-              </button>
-            </div>
           </div>
         </div>
       )}

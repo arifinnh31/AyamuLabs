@@ -5,7 +5,7 @@ import AIStudioFooter from "@/components/aistudio/AIStudioFooter";
 export default function AIStudioPage() {
   return (
     <div className="flex flex-col min-h-full">
-      <div className="grow w-full space-y-8 p-4 md:p-8">
+      <div className="grow w-full space-y-8 p-4 md:px-8 md:pb-8 md:pt-1">
         <div className="text-center sm:text-left">
           <p className="text-gray-500 dark:text-gray-400 max-w-2xl">
             Create multiple style variations for your character assets. Utilize

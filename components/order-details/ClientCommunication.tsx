@@ -8,9 +8,12 @@ export default function ClientCommunication() {
           <span className="material-icons-round text-primary">chat</span>
           Client Communication
         </h2>
-        <span className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs px-2 py-1 rounded-full font-bold">
-          Active
-        </span>
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+          <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+            Online
+          </span>
+        </div>
       </div>
       <div className="flex-1 overflow-y-auto p-6 space-y-4">
         <div className="flex gap-3">
@@ -22,7 +25,7 @@ export default function ClientCommunication() {
               Hi team! Just wondering if we can make the chicken costume a bit
               more fluffy?
             </div>
-            <span className="text-[10px] text-gray-400 ml-2">10:42 AM</span>
+            <span className="text-[10px] text-gray-400 ml-2">Client • 10:42 AM</span>
           </div>
         </div>
         <div className="flex gap-3 flex-row-reverse">
@@ -39,7 +42,7 @@ export default function ClientCommunication() {
               working on the sketch phase. I&apos;ll upload a preview shortly.
             </div>
             <span className="text-[10px] text-gray-400 mr-2 text-right block">
-              10:45 AM
+              You • 10:45 AM
             </span>
           </div>
         </div>
@@ -56,7 +59,7 @@ export default function ClientCommunication() {
             <div className="bg-gray-100 dark:bg-gray-700 px-4 py-2 rounded-2xl rounded-tl-none text-sm text-gray-800 dark:text-gray-200 shadow-sm">
               Great, thanks! Looking forward to it.
             </div>
-            <span className="text-[10px] text-gray-400 ml-2">11:05 AM</span>
+            <span className="text-[10px] text-gray-400 ml-2">Client • 11:05 AM</span>
           </div>
         </div>
       </div>

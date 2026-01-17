@@ -3,48 +3,55 @@ export default function ProjectFiles() {
     <div className="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-6">
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-sm font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-          Project Files
+          Project Files & Deliverables
         </h3>
-        <button className="text-primary hover:bg-primary/10 p-1 rounded transition-colors cursor-pointer">
-          <span className="material-icons-round text-lg">cloud_upload</span>
-        </button>
       </div>
-      <div className="space-y-3">
-        <div className="group flex items-start gap-3 p-3 rounded-lg border border-border-light dark:border-border-dark hover:border-primary/50 hover:bg-primary/5 transition-all cursor-pointer">
-          <div className="w-10 h-10 rounded bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center flex-shrink-0">
-            <span className="material-icons-round">image</span>
-          </div>
-          <div className="flex-1 min-w-0">
-            <h4 className="text-sm font-medium text-gray-900 dark:text-white truncate">
-              sketch_v1.png
-            </h4>
-            <p className="text-xs text-gray-500">2.4 MB • Uploaded 2h ago</p>
-          </div>
-          <button className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-primary transition-opacity cursor-pointer">
-            <span className="material-icons-round text-lg">download</span>
-          </button>
+      
+      <div className="space-y-6">
+        {/* Preview Section */}
+        <div>
+            <h4 className="text-xs font-bold text-gray-700 dark:text-gray-300 mb-2 uppercase">Live Preview (Watermarked)</h4>
+            <div className="border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl p-4 text-center hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-pointer group">
+                <input type="file" className="hidden" id="preview-upload" />
+                <label htmlFor="preview-upload" className="cursor-pointer block">
+                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2 text-primary group-hover:scale-110 transition-transform">
+                        <span className="material-icons-round">visibility</span>
+                    </div>
+                    <p className="text-sm font-medium text-gray-900 dark:text-white">Upload New Preview</p>
+                    <p className="text-xs text-gray-500 mt-1">Updates the client's live view</p>
+                </label>
+            </div>
         </div>
-        <div className="group flex items-start gap-3 p-3 rounded-lg border border-border-light dark:border-border-dark hover:border-primary/50 hover:bg-primary/5 transition-all cursor-pointer">
-          <div className="w-10 h-10 rounded bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center flex-shrink-0">
-            <span className="material-icons-round">description</span>
-          </div>
-          <div className="flex-1 min-w-0">
-            <h4 className="text-sm font-medium text-gray-900 dark:text-white truncate">
-              requirements_doc.pdf
-            </h4>
-            <p className="text-xs text-gray-500">
-              156 KB • Uploaded yesterday
-            </p>
-          </div>
-          <button className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-primary transition-opacity cursor-pointer">
-            <span className="material-icons-round text-lg">download</span>
-          </button>
-        </div>
-        <div className="mt-4 pt-4 border-t border-border-light dark:border-border-dark">
-          <button className="w-full py-2 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg text-sm text-gray-500 hover:text-primary hover:border-primary transition-colors flex items-center justify-center gap-2 cursor-pointer">
-            <span className="material-icons-round">add</span>
-            Upload Watermarked Preview
-          </button>
+
+        {/* Final Result Section */}
+        <div>
+            <h4 className="text-xs font-bold text-gray-700 dark:text-gray-300 mb-2 uppercase">Final Deliverables</h4>
+            <div className="border-2 border-dashed border-green-200 dark:border-green-900/30 rounded-xl p-4 text-center hover:bg-green-50 dark:hover:bg-green-900/10 transition-colors cursor-pointer group">
+                <input type="file" className="hidden" id="final-upload" />
+                <label htmlFor="final-upload" className="cursor-pointer block">
+                    <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-2 text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform">
+                        <span className="material-icons-round">verified</span>
+                    </div>
+                    <p className="text-sm font-medium text-gray-900 dark:text-white">Upload Final Result</p>
+                    <p className="text-xs text-gray-500 mt-1">High-res, non-watermarked files</p>
+                </label>
+            </div>
+            
+            {/* Mocked "Uploaded" file for display */}
+            <div className="mt-3 flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-100 dark:border-gray-800">
+                 <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center">
+                        <span className="material-icons-round text-sm">archive</span>
+                    </div>
+                    <div>
+                         <p className="text-sm font-medium text-gray-900 dark:text-white">Final_Bundle_v1.zip</p>
+                         <p className="text-xs text-green-600 dark:text-green-400 font-bold">Ready for download</p>
+                    </div>
+                 </div>
+                 <button className="text-gray-400 hover:text-red-500">
+                    <span className="material-icons-round">delete</span>
+                 </button>
+            </div>
         </div>
       </div>
     </div>

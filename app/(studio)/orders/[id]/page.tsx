@@ -5,6 +5,11 @@ import ClientCommunication from "@/components/order-details/ClientCommunication"
 import StageTimeline from "@/components/order-details/StageTimeline";
 import ProjectFiles from "@/components/order-details/ProjectFiles";
 import InternalNotes from "@/components/order-details/InternalNotes";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Order Details",
+};
 
 export default function OrderDetailsPage() {
   return (

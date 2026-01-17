@@ -1,7 +1,20 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function OrderInfoCard() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const images = [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuA4FzxgU8wMvUvcfAbFF69H4BPlVSZk04E72MMBTuOcznEZrPe0s8YJOG1e-Ba5uwo0sOxDgZaJCXmWk7yk1tabCZ6O2czsc_L8YUVIDUjuX_MyPCfcpv78NOviPPoj_GSgouN2bc8VT7YuTrwtWVooX4phJI_Lbmnpnk3ZSEf-HRT5cK29z-R-AK04cC3AwFf9Paio2MyaIWYfp0OzdL8Z5J3AmPV1PNv9zq8r3YrNEBBdt1XWTPVXVStn6tQth43d-NwNjzZ87g",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuC11LYBxWJpPVRXI2fr4bpKgEynFUyzBfGU4kohcTV768YWQ-0Sgw1CqKdKnZVv4fCknxoiUKZORBoxSXgtibMl2nq1AWt306BHujPoJDvcCrtI2N6kqUmj_Ei4StP_BOV5C8Lpony5eDGpIHIs5vuId66CIbd8DPNfDoQxm_ivvK2MFPnFD_LlLLTHFT49b3WIGODx7b9o0xXogxV8U6HARYDu9t-4iHlALREqFJaqBqiDoL_svgnlnf07IFKcRxdxwihhWVhIOw"
+  ];
+
   return (
+    <>
     <div className="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark overflow-hidden">
       <div className="px-6 py-4 border-b border-border-light dark:border-border-dark flex justify-between items-center bg-gray-50/50 dark:bg-gray-800/50">
         <h2 className="text-lg font-bold font-display flex items-center gap-2">
@@ -54,9 +67,26 @@ export default function OrderInfoCard() {
             YES
           </span>
         </div>
+        <div>
+           <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
+            Payment Option
+          </label>
+          <span className="text-gray-900 dark:text-white font-medium">
+             Full Payment
+          </span>
+        </div>
+        <div>
+           <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
+            Payment Method
+          </label>
+          <div className="flex items-center gap-1.5">
+             <span className="material-icons-round text-blue-600 dark:text-blue-400 text-sm">payments</span>
+             <span className="text-gray-900 dark:text-white font-medium">PayPal</span>
+          </div>
+        </div>
         <div className="md:col-span-2">
           <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
-            Description / Prompt
+            Description
           </label>
           <div className="bg-gray-50 dark:bg-black/20 p-4 rounded-lg text-sm leading-relaxed text-gray-700 dark:text-gray-300 border border-border-light dark:border-border-dark">
             <p>
@@ -72,30 +102,65 @@ export default function OrderInfoCard() {
             Reference Images
           </label>
           <div className="flex gap-3 overflow-x-auto pb-2">
-            <div className="relative group w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden border border-border-light dark:border-border-dark cursor-pointer">
-              <Image
-                alt="Anime girl reference"
-                className="w-full h-full object-cover transition-transform group-hover:scale-110"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4FzxgU8wMvUvcfAbFF69H4BPlVSZk04E72MMBTuOcznEZrPe0s8YJOG1e-Ba5uwo0sOxDgZaJCXmWk7yk1tabCZ6O2czsc_L8YUVIDUjuX_MyPCfcpv78NOviPPoj_GSgouN2bc8VT7YuTrwtWVooX4phJI_Lbmnpnk3ZSEf-HRT5cK29z-R-AK04cC3AwFf9Paio2MyaIWYfp0OzdL8Z5J3AmPV1PNv9zq8r3YrNEBBdt1XWTPVXVStn6tQth43d-NwNjzZ87g"
-                width={96}
-                height={96}
-              />
-            </div>
-            <div className="relative group w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden border border-border-light dark:border-border-dark cursor-pointer">
-              <Image
-                alt="Chicken costume reference"
-                className="w-full h-full object-cover transition-transform group-hover:scale-110"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC11LYBxWJpPVRXI2fr4bpKgEynFUyzBfGU4kohcTV768YWQ-0Sgw1CqKdKnZVv4fCknxoiUKZORBoxSXgtibMl2nq1AWt306BHujPoJDvcCrtI2N6kqUmj_Ei4StP_BOV5C8Lpony5eDGpIHIs5vuId66CIbd8DPNfDoQxm_ivvK2MFPnFD_LlLLTHFT49b3WIGODx7b9o0xXogxV8U6HARYDu9t-4iHlALREqFJaqBqiDoL_svgnlnf07IFKcRxdxwihhWVhIOw"
-                width={96}
-                height={96}
-              />
-            </div>
-            <div className="w-24 h-24 flex-shrink-0 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary transition-colors cursor-pointer">
-              <span className="material-icons-round">add_photo_alternate</span>
-            </div>
+            {images.map((src, index) => (
+                <div 
+                    key={index}
+                    className="relative group w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden border border-border-light dark:border-border-dark cursor-pointer"
+                    onClick={() => setSelectedImage(src)}
+                >
+                    <Image
+                        alt={`Reference ${index + 1}`}
+                        className="w-full h-full object-cover transition-transform group-hover:scale-110"
+                        src={src}
+                        width={96}
+                        height={96}
+                    />
+                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span className="material-icons-round text-white">zoom_in</span>
+                    </div>
+                </div>
+            ))}
           </div>
         </div>
       </div>
     </div>
+
+    {/* Lightbox Overlay */}
+    {typeof document !== 'undefined' && createPortal(
+      <AnimatePresence>
+          {selectedImage && (
+              <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-10000 bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm"
+                  onClick={() => setSelectedImage(null)}
+              >
+                  <motion.div
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.9, opacity: 0 }}
+                      className="relative max-w-5xl max-h-[90vh] w-full h-full flex items-center justify-center"
+                      onClick={(e) => e.stopPropagation()}
+                  >
+                       <Image
+                          src={selectedImage}
+                          alt="Reference Full View"
+                          fill
+                          className="object-contain"
+                      />
+                      <button 
+                          className="absolute top-4 right-4 text-white hover:text-gray-300 bg-black/50 rounded-full p-2 backdrop-blur-md transition-colors"
+                          onClick={() => setSelectedImage(null)}
+                      >
+                          <span className="material-icons-round text-3xl">close</span>
+                      </button>
+                  </motion.div>
+              </motion.div>
+          )}
+      </AnimatePresence>,
+      document.body
+    )}
+    </>
   );
 }

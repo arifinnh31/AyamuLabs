@@ -8,7 +8,7 @@ interface KanbanBoardProps {
 
 export default function KanbanBoard({ cards, onCardAction }: KanbanBoardProps) {
   
-  const incomingCards = cards.filter(c => c.status === "incoming");
+  const incomingCards = cards.filter(c => c.status === "incoming" || c.status === "accepted");
   const paidCards = cards.filter(c => c.status === "paid");
   const inProgressCards = cards.filter(c => c.status === "in_progress");
   const doneCards = cards.filter(c => c.status === "done");

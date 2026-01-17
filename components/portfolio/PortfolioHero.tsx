@@ -1,8 +1,11 @@
 export default function PortfolioHero() {
   return (
     <div className="text-center mb-12 md:mb-16">
-      <div className="inline-block p-2 px-4 rounded-full bg-portfolio-secondary/50 dark:bg-orange-900/30 text-portfolio-primary font-bold text-sm mb-4 border border-portfolio-primary/20">
-        ✨ Creative Studio
+      <div className="inline-flex items-center px-4 py-2 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-200 text-sm font-bold mb-4">
+        <span className="material-icons-round text-sm mr-2">
+          auto_awesome
+        </span>
+        Creative Studio
       </div>
       <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4 text-portfolio-text-light dark:text-white">
         Our Creative <span className="text-portfolio-primary">Gallery</span>

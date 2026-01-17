@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Button from "@/components/ui/Button";
+import SearchBar from "@/components/ui/SearchBar";
 import UsersTable from "@/components/users/UsersTable";
 import UserModal from "@/components/users/UserModal";
 import ConfirmationModal from "@/components/ui/ConfirmationModal";
@@ -118,16 +119,12 @@ export default function UsersPage() {
   return (
     <div className="space-y-6 p-4 md:px-8 md:pb-8 md:pt-1 h-[calc(100vh-theme(spacing.20))] flex flex-col">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shrink-0">
-        <div className="relative w-full md:w-96">
-            <span className="material-icons-round absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
-            <input 
-                type="text" 
-                placeholder="Search users..." 
-                value={searchQuery}
-                onChange={handleSearchChange}
-                className="w-full pl-10 pr-4 py-2 rounded-xl bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-800 focus:outline-none focus:ring-2 focus:ring-primary shadow-sm"
-            />
-        </div>
+        <SearchBar 
+            placeholder="Search users..." 
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className="w-full md:w-96"
+        />
         <div className="flex gap-2 flex-wrap items-center">
             {/* Simulation Toggle */}
             <div className="flex items-center gap-2 mr-2 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">

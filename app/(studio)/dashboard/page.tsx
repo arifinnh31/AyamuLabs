@@ -3,6 +3,11 @@ import StatsGrid from "@/components/dashboard/StatsGrid";
 import RecentCommissions from "@/components/dashboard/RecentCommissions";
 import StudioUpdates from "@/components/dashboard/StudioUpdates";
 import AIAssistantCard from "@/components/dashboard/AIAssistantCard";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+};
 
 export default function DashboardPage() {
   return (

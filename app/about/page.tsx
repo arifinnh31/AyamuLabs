@@ -4,6 +4,11 @@ import AboutHero from "@/components/about/AboutHero";
 import AboutStory from "@/components/about/AboutStory";
 import Toolbox from "@/components/about/Toolbox";
 import CTA from "@/components/CTA"; // Reuse CTA from home
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us",
+};
 
 export default function AboutPage() {
   return (

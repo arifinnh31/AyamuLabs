@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef } from "react";
 import Modal from "@/components/ui/Modal";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
@@ -7,9 +8,36 @@ import Image from "next/image";
 interface EditProfileModalProps {
   isOpen: boolean;
   onClose: () => void;
+  currentImage?: string | null;
+  onSaveImage?: (image: string) => void;
 }
 
-export default function EditProfileModal({ isOpen, onClose }: EditProfileModalProps) {
+export default function EditProfileModal({ isOpen, onClose, currentImage, onSaveImage }: EditProfileModalProps) {
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleTriggerUpload = () => {
+      fileInputRef.current?.click();
+  };
+
+  const handleSave = () => {
+      if (imagePreview && onSaveImage) {
+          onSaveImage(imagePreview);
+      }
+      onClose();
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -20,7 +48,7 @@ export default function EditProfileModal({ isOpen, onClose }: EditProfileModalPr
           <Button variant="secondary" onClick={onClose}>
             Cancel
           </Button>
-          <Button onClick={onClose}>
+          <Button onClick={handleSave}>
             Save Changes
           </Button>
         </>
@@ -28,18 +56,32 @@ export default function EditProfileModal({ isOpen, onClose }: EditProfileModalPr
     >
       <div className="space-y-6">
         <div className="flex flex-col items-center gap-4">
-            <div className="relative">
-                <Image
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8s-nLPIs_nn9hwIsHyagDk5Si8jfFeq2tU-3ADHZ6jPPzKB2ENVGcY0JXSWBlMhYuTu7fIU9cME6u4u_Bcj9NLjYDgd1jvpJ6w1Xd-CjBP2OO2FfQqf1d6b2nx7Ve5oXCAY_KfnOJNItTr6S3SMDhXrr0Q8sWNuyMB-veisGJSCNI-j-7C4jLTgM2xTHKvYZdNivPEFV8KExl6qd8V5tanzB-TrXvleaypRLE4NyEh0tdDEfTCJk7TrHxGNmVBo2lwK6gcwKw1Q"
-                    alt="Profile Avatar"
-                    width={80}
-                    height={80}
-                    className="rounded-full ring-4 ring-gray-50 dark:ring-gray-800 object-cover"
-                />
-                <button className="absolute bottom-0 right-0 bg-primary text-white p-1 rounded-full shadow-md hover:bg-primary-dark transition-colors">
-                    <span className="material-icons-round text-sm">edit</span>
-                </button>
+            <div className="relative group cursor-pointer" onClick={handleTriggerUpload}>
+                {(imagePreview || currentImage) ? (
+                    <Image
+                        src={imagePreview || currentImage || ""}
+                        alt="Profile Avatar"
+                        width={80}
+                        height={80}
+                        className="rounded-full ring-4 ring-gray-50 dark:ring-gray-800 object-cover w-20 h-20 transition-opacity group-hover:opacity-80"
+                    />
+                ) : (
+                    <div className="w-20 h-20 rounded-full ring-4 ring-gray-50 dark:ring-gray-800 bg-primary/10 text-primary flex items-center justify-center font-bold text-4xl transition-opacity group-hover:opacity-80">
+                        A
+                    </div>
+                )}
+
+                <div className="absolute inset-0 flex items-center justify-center bg-black/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="material-icons-round text-white">camera_alt</span>
+                </div>
             </div>
+            <input 
+                type="file" 
+                ref={fileInputRef} 
+                className="hidden" 
+                accept="image/*"
+                onChange={handleImageChange}
+            />
             <p className="text-sm text-gray-500">Allowed *.jpeg, *.jpg, *.png, *.gif</p>
         </div>
 

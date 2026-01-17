@@ -21,14 +21,7 @@ const MOCK_NOTIFICATIONS: Notification[] = [
     isRead: false,
     type: "success",
   },
-  {
-    id: "2",
-    title: "System Update",
-    message: "Studio features have been updated successfully.",
-    time: "1 hour ago",
-    isRead: false,
-    type: "info",
-  },
+
   {
     id: "3",
     title: "Deadline Approaching",

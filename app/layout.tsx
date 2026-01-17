@@ -24,7 +24,10 @@ const fredoka = Fredoka({
 });
 
 export const metadata: Metadata = {
-  title: "AyamuLabs Homepage",
+  title: {
+    template: "%s | AyamuLabs",
+    default: "AyamuLabs - AI-Assisted Multi-Creator Studio",
+  },
   description: "Hatching Creativity Together - AI-Assisted Multi-Creator Studio",
 };
 

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import KanbanBoard from "@/components/kanban/KanbanBoard";
-import NewOrderModal from "@/components/kanban/NewOrderModal";
 import Modal from "@/components/ui/Modal"; // Import Modal
 import Button from "@/components/ui/Button";
 import { KanbanCardProps } from "@/components/kanban/KanbanCard";
@@ -26,7 +25,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 // Mock Initial Data
 const INITIAL_CARDS: KanbanCardProps[] = [
   {
-    id: "#ORD-2941",
+    id: "#AYM-2941",
     title: "Chibi Character Design",
     price: 150,
     category: { label: "Illustration", color: CATEGORY_COLORS["Illustration"] },
@@ -34,7 +33,7 @@ const INITIAL_CARDS: KanbanCardProps[] = [
     status: "incoming",
   },
   {
-    id: "#ORD-2942",
+    id: "#AYM-2942",
     title: "VTuber Model Rigging",
     price: 800,
     borderColor: "border-l-blue-400",
@@ -43,7 +42,7 @@ const INITIAL_CARDS: KanbanCardProps[] = [
     status: "incoming",
   },
   {
-    id: "#ORD-2945",
+    id: "#AYM-2945",
     title: "Background Art - SciFi",
     price: 200,
     category: { label: "Env Art", color: CATEGORY_COLORS["Background"] },
@@ -51,21 +50,23 @@ const INITIAL_CARDS: KanbanCardProps[] = [
     status: "incoming",
   },
   {
-    id: "#ORD-2938",
+    id: "#AYM-2938",
     title: "Custom Discord Emotes",
     description: "Pack of 5 emotes. Chicken themed but moody. High contrast.",
     category: { label: "Emotes", color: CATEGORY_COLORS["Emotes"] },
     status: "paid",
+    paymentType: "full",
   },
   {
-    id: "#ORD-2935",
+    id: "#AYM-2935",
     title: "Fanart - Genshin Impact",
     description: "Full body illustration of Raiden Shogun in a casual outfit.",
     category: { label: "Illustration", color: CATEGORY_COLORS["Illustration"] },
     status: "paid",
+    paymentType: "deposit",
   },
   {
-    id: "#ORD-2920",
+    id: "#AYM-2920",
     title: "LoRA Training - Style A",
     description: "Training a LoRA model on a specific anime art style. 50 images dataset.",
     category: { label: "AI Model", color: CATEGORY_COLORS["AI Model"] },
@@ -74,7 +75,7 @@ const INITIAL_CARDS: KanbanCardProps[] = [
     timeLeft: "2d left",
   },
   {
-    id: "#ORD-2925",
+    id: "#AYM-2925",
     title: "Sketch Commission",
     description: "Rough sketch of an original character concept. Fantasy armor.",
     category: { label: "Illustration", color: CATEGORY_COLORS["Illustration"] },
@@ -83,7 +84,7 @@ const INITIAL_CARDS: KanbanCardProps[] = [
     timeLeft: "4d left",
   },
   {
-    id: "#ORD-2910",
+    id: "#AYM-2910",
     title: "Character Sheet - OC",
     description: "Three-view character sheet (front, side, back) for a D&D character.",
     category: { label: "Character Design", color: CATEGORY_COLORS["Character Design"] },
@@ -92,7 +93,7 @@ const INITIAL_CARDS: KanbanCardProps[] = [
     timeLeft: "2d ago",
   },
   {
-    id: "#ORD-2905",
+    id: "#AYM-2905",
     title: "Twitch Overlay Pack",
     description: "Stream overlay package including scenes, alerts, and panels.",
     category: { label: "Design", color: CATEGORY_COLORS["Character Design"] }, // Using Character Design color for general design
@@ -102,10 +103,13 @@ const INITIAL_CARDS: KanbanCardProps[] = [
   },
 ];
 
+import { useSidebar } from "@/components/dashboard/SidebarContext";
+import SearchBar from "@/components/ui/SearchBar";
+
 export default function OrdersPage() {
+  const { profileImage } = useSidebar();
   const [orders, setOrders] = useState<KanbanCardProps[]>(INITIAL_CARDS);
   const [filterQuery, setFilterQuery] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
   
   // Confirmation Modal State
   const [confirmModal, setConfirmModal] = useState<{
@@ -123,25 +127,6 @@ export default function OrdersPage() {
     order.id.toLowerCase().includes(filterQuery.toLowerCase()) ||
     order.category.label.toLowerCase().includes(filterQuery.toLowerCase())
   );
-
-  const handleAddNewOrder = (newOrder: { title: string; price: number; tags: string[]; description: string; status: "incoming" }) => {
-    // Determine category from first tag or default
-    const categoryLabel = newOrder.tags.length > 0 ? newOrder.tags[0] : "Commission";
-    // Color logic
-    let color = CATEGORY_COLORS[categoryLabel] || "text-gray-600 bg-gray-100 dark:bg-gray-800"; // Default
-    if (categoryLabel === "Design") color = CATEGORY_COLORS["Character Design"];
-
-    const orderData: KanbanCardProps = {
-        id: `#ORD-${Math.floor(Math.random() * 1000) + 3000}`,
-        title: newOrder.title,
-        price: newOrder.price,
-        description: newOrder.description,
-        category: { label: categoryLabel, color },
-        status: "incoming"
-    };
-    setOrders([orderData, ...orders]);
-    setIsModalOpen(false);
-  };
 
   const handleAction = (action: string, orderId: string) => {
     if (['accept', 'reject', 'claim'].includes(action)) {
@@ -166,11 +151,11 @@ export default function OrdersPage() {
         const updatedOrders = orders.map(order => {
             if (order.id !== orderId) return order;
 
-            if (action === "accept") return { ...order, status: "paid" as const };
+            if (action === "accept") return { ...order, status: "accepted" as const };
             if (action === "claim") return { 
                 ...order, 
                 status: "in_progress" as const, 
-                assignee: "https://lh3.googleusercontent.com/aida-public/AB6AXuAUqzVlwBokxDscBGIbn7yorJ4JYmrJJHAPH61yVms8RhGvB24nJJgRwyWJLJresUzxS5kTMQMm9-ojGQRLkRJHBrctROuX3rrPm6cPF-H0_B3J7wX-u8xufLVo39Wr55MIPlgKdr1pMUoG1R4ISmpSVRDaOLp8HffP7mzEhpP6Ic2-vPq_c6KGCY7qFLTWhEXA4tCuJo8BysLzIdcJaEZP583FpvuzQphVzDSrzcg8Y5sSm9Uq84EmtQ-Mu1aIRV2aOcWTUgBGig", // Using the same avatar as Top Bar for consistency
+                assignee: "CURRENT_USER",
                 timeLeft: "3d left"
             };
             
@@ -182,6 +167,11 @@ export default function OrdersPage() {
     setConfirmModal({ isOpen: false, action: null, orderId: null });
   };
 
+  const displayedOrders = filteredOrders.map(order => ({
+    ...order,
+    assignee: order.assignee === "CURRENT_USER" ? (profileImage || "") : order.assignee
+  }));
+
   return (
     <div className="p-4 md:px-8 md:pb-8 md:pt-1">
       {/* Navbar Area */}
@@ -192,32 +182,20 @@ export default function OrdersPage() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          {/* Avatars hidden on mobile, visible on sm+ */}
-          <div className="hidden sm:flex -space-x-2 mr-2">
-            {[1,2,3].map((_,i) => (
-                <div key={i} className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white dark:border-gray-800" />
-            ))}
-            <div className="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800 bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-xs font-medium text-gray-500">
-              +4
-            </div>
-          </div>
+
           
-           <div className="relative group">
-            <span className="material-icons-round absolute left-3 top-2.5 text-gray-400 group-focus-within:text-primary transition-colors text-lg">search</span>
-            <input 
-                type="text" 
-                placeholder="Filter orders..." 
-                className="pl-9 pr-4 py-2 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary outline-none text-sm w-40 focus:w-60 transition-all shadow-sm"
-                value={filterQuery}
-                onChange={(e) => setFilterQuery(e.target.value)}
-            />
-          </div>
+          <SearchBar 
+            placeholder="Filter orders..." 
+            value={filterQuery}
+            onChange={(e) => setFilterQuery(e.target.value)}
+            className="w-40 focus-within:w-60 transition-all"
+          />
 
           {/* New Order Button Removed */}
         </div>
       </div>
 
-      <KanbanBoard cards={filteredOrders} onCardAction={handleAction} />
+      <KanbanBoard cards={displayedOrders} onCardAction={handleAction} />
 
       {/* Confirmation Modal */}
        <Modal 
@@ -232,7 +210,7 @@ export default function OrdersPage() {
        >
          <div className="space-y-4">
             <p className="text-gray-600 dark:text-gray-300">
-                {confirmModal.action === "accept" && "Are you sure you want to accept this incoming order? It will be moved to 'Paid' status."}
+                {confirmModal.action === "accept" && "Are you sure you want to accept this incoming order? The client will be notified to proceed with payment."}
                 {confirmModal.action === "reject" && "Are you sure you want to reject this order? This action cannot be undone."}
                 {confirmModal.action === "claim" && "Are you sure you want to claim this order? It will be assigned to you and moved to 'In Progress'."}
             </p>

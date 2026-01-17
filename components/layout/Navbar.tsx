@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import Button from "../ui/Button";
 import ThemeToggle from "../ui/ThemeToggle";
 
+import UserProfileMenu from "@/components/layout/UserProfileMenu";
+
 export default function Navbar() {
 
 
@@ -20,7 +22,12 @@ export default function Navbar() {
       : "font-bold text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors";
   };
 
-
+  // Mock Logged In User
+  const [currentUser, setCurrentUser] = useState({
+    name: "Ayamu",
+    role: "Artist",
+    avatar: null as string | null
+  });
 
   return (
     <nav className="fixed w-full z-50 top-0 transition-all duration-300 bg-surface-light/90 dark:bg-surface-dark/90 backdrop-blur-md shadow-sm border-b border-primary/20">
@@ -52,6 +59,9 @@ export default function Navbar() {
             <Link href="/commission" className={getLinkClass("/commission")}>
               Commission
             </Link>
+            <Link href="/tracker" className={getLinkClass("/tracker")}>
+              Tracker
+            </Link>
             <Link href="/about" className={getLinkClass("/about")}>
               About
             </Link>
@@ -62,18 +72,39 @@ export default function Navbar() {
             {/* Theme Toggle */}
             <ThemeToggle />
 
-            {/* Login Button */}
-            <Link href="/dashboard">
+            {/* Login Button (Commented Out) */}
+            {/* <Link href="/login">
               <Button>Login</Button>
-            </Link>
+            </Link> */}
+
+            {/* Simulated Logged In User */}
+            <UserProfileMenu 
+                user={currentUser}
+                onUpdateAvatar={(newUrl) => {
+                    setCurrentUser(prev => ({...prev, avatar: newUrl}));
+                }}
+                variant="public"
+            />
           </div>
 
           {/* Mobile Actions & Menu Button */}
           <div className="md:hidden flex items-center gap-2">
             <ThemeToggle />
-            <Link href="/dashboard">
+            
+             {/* Mobile User Avatar Trigger */}
+             <UserProfileMenu 
+                user={currentUser}
+                onUpdateAvatar={(newUrl) => {
+                    setCurrentUser(prev => ({...prev, avatar: newUrl}));
+                }}
+                isMobile={true}
+             />
+            
+            {/* Login Button (Commented Out) */}
+            {/* <Link href="/login">
               <Button size="sm">Login</Button>
-            </Link>
+            </Link> */}
+
             <Button
               variant="icon"
               size="icon"
@@ -126,6 +157,17 @@ export default function Navbar() {
               Commission
             </Link>
             <Link
+              href="/tracker"
+              className={`block px-3 py-2 rounded-md text-base font-bold transition-colors ${
+                pathname?.startsWith("/tracker")
+                  ? "text-primary bg-primary/10"
+                  : "text-gray-700 dark:text-gray-200 hover:bg-primary/10 hover:text-primary"
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Tracker
+            </Link>
+            <Link
               href="/about"
               className={`block px-3 py-2 rounded-md text-base font-bold transition-colors ${
                 pathname?.startsWith("/about")
@@ -135,6 +177,18 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               About
+            </Link>
+             
+             {/* Mobile Dashboard Link */}
+            <Link
+              href="/dashboard"
+              className="block px-3 py-2 rounded-md text-base font-bold transition-colors text-gray-700 dark:text-gray-200 hover:bg-primary/10 hover:text-primary mt-4 border-t border-gray-100 dark:border-gray-700 pt-4"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+               <span className="flex items-center gap-2">
+                    <span className="material-icons-round">dashboard</span>
+                    Dashboard
+               </span>
             </Link>
           </div>
         </div>

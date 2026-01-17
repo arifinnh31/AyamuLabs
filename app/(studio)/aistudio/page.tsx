@@ -1,6 +1,11 @@
 import GeneratorPanel from "@/components/aistudio/GeneratorPanel";
 import ResultsGallery from "@/components/aistudio/ResultsGallery";
 import AIStudioFooter from "@/components/aistudio/AIStudioFooter";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "AI Studio",
+};
 
 export default function AIStudioPage() {
   return (

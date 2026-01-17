@@ -8,36 +8,30 @@ export default function StageTimeline() {
         <div className="relative">
           <div className="absolute -left-[21px] top-0 w-4 h-4 rounded-full bg-green-500 border-2 border-white dark:border-surface-dark"></div>
           <h4 className="text-sm font-bold text-gray-900 dark:text-white">
-            Order Confirmed
+            Incoming
           </h4>
-          <p className="text-xs text-gray-500">Oct 24, 10:00 AM</p>
+          <p className="text-xs text-gray-500">Accepted - Oct 24, 10:00 AM</p>
+        </div>
+        <div className="relative">
+          <div className="absolute -left-[21px] top-0 w-4 h-4 rounded-full bg-green-500 border-2 border-white dark:border-surface-dark"></div>
+          <h4 className="text-sm font-bold text-gray-900 dark:text-white">
+            Paid
+          </h4>
+          <p className="text-xs text-gray-500">Verified - Oct 25, 2:30 PM</p>
         </div>
         <div className="relative">
           <div className="absolute -left-[21px] top-0 w-4 h-4 rounded-full bg-primary border-2 border-white dark:border-surface-dark animate-pulse"></div>
-          <h4 className="text-sm font-bold text-primary">Sketching</h4>
-          <p className="text-xs text-gray-500">In Progress - 40%</p>
-          <div className="mt-2 w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
-            <div
-              className="bg-primary h-1.5 rounded-full"
-              style={{ width: "40%" }}
-            ></div>
-          </div>
+          <h4 className="text-sm font-bold text-primary">In Progress</h4>
           <div className="mt-3 flex gap-2">
             <button className="text-xs bg-primary text-white px-2 py-1 rounded shadow-sm hover:bg-primary-hover cursor-pointer">
-              Complete Step
+              Mark as Done
             </button>
           </div>
         </div>
         <div className="relative opacity-50">
           <div className="absolute -left-[21px] top-0 w-4 h-4 rounded-full bg-gray-300 dark:bg-gray-600 border-2 border-white dark:border-surface-dark"></div>
           <h4 className="text-sm font-bold text-gray-900 dark:text-white">
-            Line Art &amp; Color
-          </h4>
-        </div>
-        <div className="relative opacity-50">
-          <div className="absolute -left-[21px] top-0 w-4 h-4 rounded-full bg-gray-300 dark:bg-gray-600 border-2 border-white dark:border-surface-dark"></div>
-          <h4 className="text-sm font-bold text-gray-900 dark:text-white">
-            Final Review
+            Done
           </h4>
         </div>
       </div>

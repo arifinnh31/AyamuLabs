@@ -349,6 +349,48 @@ export default function OrderModal({ isOpen, onClose, selectedOption, categoryTi
                         />
                     </div>
                     </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                         <div>
+                            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">
+                                Payment Option
+                            </label>
+                            <div className="flex space-x-4">
+                                <label className="flex items-center space-x-2 cursor-pointer group">
+                                    <input
+                                    defaultChecked
+                                    className="text-primary focus:ring-primary border-gray-300 dark:border-stone-600 bg-gray-50 dark:bg-stone-800"
+                                    name="payment"
+                                    type="radio"
+                                    value="full"
+                                    />
+                                    <span className="text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors">
+                                        Full Payment
+                                    </span>
+                                </label>
+                                <label className="flex items-center space-x-2 cursor-pointer group">
+                                    <input
+                                    className="text-primary focus:ring-primary border-gray-300 dark:border-stone-600 bg-gray-50 dark:bg-stone-800"
+                                    name="payment"
+                                    type="radio"
+                                    value="deposit"
+                                    />
+                                    <span className="text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors">
+                                        Deposit (50%)
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                             <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
+                                Accepted Payments
+                            </label>
+                            <div className="flex items-center gap-2 p-3 bg-gray-50 dark:bg-stone-800 rounded-xl border border-gray-200 dark:border-stone-700">
+                                <span className="material-icons-round text-blue-600 dark:text-blue-400">payments</span>
+                                <span className="text-gray-700 dark:text-gray-200 font-medium">PayPal</span>
+                            </div>
+                        </div>
+                    </div>
                     <hr className="border-gray-100 dark:border-stone-700 my-6" />
                     <div className="flex items-start space-x-3">
                     <div className="flex items-center h-5">

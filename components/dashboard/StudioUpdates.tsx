@@ -5,22 +5,7 @@ export default function StudioUpdates() {
         Studio Updates
       </h3>
       <div className="space-y-4">
-        <div className="flex gap-4">
-          <div className="h-10 w-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex-shrink-0 flex items-center justify-center text-purple-600 dark:text-purple-400">
-            <span className="material-icons-round text-sm">smart_toy</span>
-          </div>
-          <div>
-            <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
-              AI Model v2.4 Ready
-            </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-              The new inking model has finished training.
-            </p>
-            <span className="text-xs text-gray-400 mt-1 block">
-              2 hours ago
-            </span>
-          </div>
-        </div>
+
         <div className="flex gap-4">
           <div className="h-10 w-10 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex-shrink-0 flex items-center justify-center text-yellow-600 dark:text-yellow-400">
             <span className="material-icons-round text-sm">star</span>

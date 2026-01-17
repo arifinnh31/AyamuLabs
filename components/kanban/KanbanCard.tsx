@@ -9,10 +9,11 @@ export interface KanbanCardProps {
   description?: string;
   price?: number;
   category: { label: string; color: string };
-  status: "incoming" | "paid" | "in_progress" | "done";
+  status: "incoming" | "accepted" | "paid" | "in_progress" | "done";
   assignee?: string;
   timeLeft?: string;
   borderColor?: string;
+  paymentType?: "full" | "deposit";
 }
 
 interface KanbanCardComponentProps extends KanbanCardProps {
@@ -22,19 +23,19 @@ interface KanbanCardComponentProps extends KanbanCardProps {
 export default function KanbanCard({
   id,
   title,
-  description,
   price,
   category,
   status,
   assignee,
   timeLeft,
   borderColor,
-  onAction
+  onAction,
+  paymentType
 }: KanbanCardComponentProps) {
   const router = useRouter();
 
   const handleCardClick = () => {
-    router.push("/orders/1");
+    router.push("/orders/AYM-3492");
   };
 
   const handleAction = (e: React.MouseEvent, action: string) => {
@@ -62,6 +63,15 @@ export default function KanbanCard({
             Delivered
           </span>
         )}
+        {status === "paid" && paymentType && (
+            <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                paymentType === "full" 
+                ? "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/40 dark:text-emerald-300"
+                : "bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-300"
+            }`}>
+              {paymentType === "full" ? "Full Payment" : "Deposit"}
+            </span>
+        )}
       </div>
 
       <h4
@@ -71,12 +81,6 @@ export default function KanbanCard({
       >
         {title}
       </h4>
-
-      {description && (
-        <p className="text-xs text-gray-500 mb-3 line-clamp-2">
-          {description}
-        </p>
-      )}
 
       <div className="flex items-center gap-2 mb-3">
         <span
@@ -93,24 +97,39 @@ export default function KanbanCard({
               <span className="material-icons-round text-sm">attach_money</span>{" "}
               {price}
             </div>
-            
-             <div className="flex gap-2">
-                <button
-                  onClick={(e) => handleAction(e, "accept")}
-                  className="p-1.5 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 dark:bg-green-900/30 dark:text-green-400 dark:hover:bg-green-900/50 transition-colors cursor-pointer"
-                  title="Accept"
-                >
-                  <span className="material-icons-round text-sm">check</span>
-                </button>
-                <button
-                  onClick={(e) => handleAction(e, "reject")}
-                  className="p-1.5 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50 transition-colors cursor-pointer"
-                  title="Reject"
-                >
-                  <span className="material-icons-round text-sm">close</span>
-                </button>
-              </div>
+
+            <div className="flex gap-2">
+              <button
+                onClick={(e) => handleAction(e, "accept")}
+                className="p-1.5 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 dark:bg-green-900/30 dark:text-green-400 dark:hover:bg-green-900/50 transition-colors cursor-pointer"
+                title="Accept"
+              >
+                <span className="material-icons-round text-sm">check</span>
+              </button>
+              <button
+                onClick={(e) => handleAction(e, "reject")}
+                className="p-1.5 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50 transition-colors cursor-pointer"
+                title="Reject"
+              >
+                <span className="material-icons-round text-sm">close</span>
+              </button>
+            </div>
           </>
+        )}
+
+        {status === "accepted" && (
+            <>
+                {price !== undefined ? (
+                    <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400 text-xs font-semibold">
+                        <span className="material-icons-round text-sm">attach_money</span>{" "}
+                        {price}
+                    </div>
+                ) : <div></div>}
+                
+                <div className="px-3 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-wide">
+                    Accepted
+                </div>
+            </>
         )}
 
         {status === "paid" && (
@@ -135,15 +154,23 @@ export default function KanbanCard({
         {(status === "in_progress" || status === "done") && (
           <>
             <div className="flex -space-x-1.5">
-              {assignee && (
-                <Image
-                  alt="Assignee"
-                  className="w-6 h-6 rounded-full border-2 border-white dark:border-gray-700"
-                  src={assignee}
-                  width={24}
-                  height={24}
-                />
+            <div className="flex -space-x-1.5">
+              {assignee !== undefined && (
+                 assignee ? (
+                    <Image
+                      alt="Assignee"
+                      className="w-6 h-6 rounded-full border-2 border-white dark:border-gray-700 object-cover"
+                      src={assignee}
+                      width={24}
+                      height={24}
+                    />
+                 ) : (
+                    <div className="w-6 h-6 rounded-full border-2 border-white dark:border-gray-700 bg-primary/10 text-primary flex items-center justify-center font-bold text-[10px]">
+                        A
+                    </div>
+                 )
               )}
+            </div>
             </div>
             <span
               className={`text-[10px] font-semibold flex items-center gap-1 ${

@@ -1,0 +1,35 @@
+
+> web@0.1.0 lint
+> eslint
+
+
+D:\projects\AyamuLabs\app\(auth)\forgot-password\page.tsx
+  32:19  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  54:62  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+D:\projects\AyamuLabs\app\(studio)\content\commissions\page.tsx
+  150:33  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\projects\AyamuLabs\app\(studio)\content\portfolio\page.tsx
+  103:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\projects\AyamuLabs\components\dashboard\StudioHeader.tsx
+  3:8   warning  'Image' is defined but never used      @typescript-eslint/no-unused-vars
+  4:23  warning  'useRouter' is defined but never used  @typescript-eslint/no-unused-vars
+  5:10  warning  'useState' is defined but never used   @typescript-eslint/no-unused-vars
+  5:20  warning  'useRef' is defined but never used     @typescript-eslint/no-unused-vars
+  5:28  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\projects\AyamuLabs\components\kanban\KanbanCard.tsx
+  26:3  warning  'description' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\projects\AyamuLabs\components\team\TeamMemberCard.tsx
+   3:8   warning  'Image' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+  47:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\projects\AyamuLabs\components\ui\ImageUpload.tsx
+  166:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  194:17  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+✖ 14 problems (2 errors, 12 warnings)
+

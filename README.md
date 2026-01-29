@@ -1,6 +1,23 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AyamuLabs - Creative Studio Platform
 
-## Getting Started
+AyamuLabs is a modern, dynamic web platform designed for a creative studio. It features a seamless commission ordering system, an interactive portfolio, and a client dashboard for tracking project status. Built with a focus on aesthetics and user experience, using the latest web technologies.
+
+## 🐣 Features
+
+- **Creative Portfolio**: Showcase works with a responsive and animated gallery.
+- **Commission System**: Streamlined flow for clients to order commissions.
+- **Order Tracking**: Dedicated tracker for clients to check the status of their commissions in real-time.
+- **Studio Dashboard**: Internal tools for managing orders, including Kanban boards and order details.
+- **Modern Design**: "Hatching Creativity" theme with smooth animations and responsive layout.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+
+## 🚀 Getting Started
 
 First, run the development server:
 
@@ -16,21 +33,18 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/`: Application source code (App Router structure).
+  - `(auth)`: Authentication specifics.
+  - `(studio)`: Dashboard and management interfaces.
+  - `portfolio/`: Public portfolio pages.
+  - `commission/`: Commission ordering flow.
+  - `tracker/`: Public order tracking pages.
+- `components/`: Reusable UI components.
+  - `ui/`: Fundamental UI blocks.
+- `public/`: Static assets.
 
-## Learn More
+## 📝 License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[MIT](LICENSE)

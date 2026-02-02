@@ -12,7 +12,7 @@ AyamuLabs is a modern, dynamic web platform designed for a creative studio. It f
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Framework**: [Next.js 16](https://nextjs.org/)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
 - **Animations**: [Framer Motion](https://www.framer.com/motion/)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
